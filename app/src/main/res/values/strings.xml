@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">Dahlia</string>
+    <string name="projects">Projects</string>
+    <string name="create_dialog_title">What to create?</string>
+    <string name="new_request">New Request</string>
+    <string name="new_project">New Project</string>
+    <string name="name">Name</string>
+    <string name="back">Go back</string>
+    <string name="saved_to">This will be saved to %1$s</string>
+    <string name="create">Create</string>
+    <string name="no_request_selected">No request currently selected, open the navigation drawer by tapping the icon in the top left corner to select or create a request.</string>
+    <string name="action_confirm">Confirm</string>
+
+    <string name="theme_system">System</string>
+    <string name="theme_light">Light</string>
+    <string name="theme_dark">Dark</string>
+
+    <string name="settings">Settings</string>
+    <string name="settings_appearance_title">Appearance</string>
+    <string name="settings_appearance_subtitle">Theme</string>
+    <string name="settings_appearance_theme">Theme</string>
+    <string name="settings_appearance_dynamic_colors">Dynamic Colors</string>
+    <string name="settings_appearance_dynamic_colors_desc">Requires Android 12+</string>
+
+    <plurals name="plural_request">
+        <item quantity="zero">%1$d Requests</item>
+        <item quantity="one">%1$d Request</item>
+        <item quantity="many">%1$d Requests</item>
+        <item quantity="other">%1$d Requests</item>
+    </plurals>
+</resources>
