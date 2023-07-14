@@ -5,6 +5,7 @@ import androidx.compose.runtime.mutableStateMapOf
 import xyz.wingio.dahlia.domain.models.Project
 import xyz.wingio.dahlia.utils.projectDir
 import xyz.wingio.dahlia.utils.showToast
+import java.util.UUID
 
 class ProjectManager {
 
@@ -20,7 +21,7 @@ class ProjectManager {
             if (file.isDirectory || !file.name.endsWith(".dlp")) return@forEach
             try {
                 Project.fromFile(file).let {
-                    projects[it.config.name] = it
+                    projects[generateId(it)] = it
                 }
             } catch (e: Throwable) {
                 showToast("Error loading project: ${file.name}")
@@ -29,8 +30,11 @@ class ProjectManager {
         }
     }
 
-    fun createProject(name: String): Project {
-        return Project.new(checkName(name)).also { projects[it.config.name] = it }
+    fun createProject(name: String): Pair<String, Project> {
+        val project = Project.new(name, checkName(name))
+        val id = generateId(project)
+        projects[id] = project
+        return id to project
     }
 
     tailrec fun checkName(name: String): String {
@@ -39,6 +43,11 @@ class ProjectManager {
             " (${it.groups[1]!!.value.toInt().inc()})"
         } else "$name (1)"
         return checkName(newName)
+    }
+
+    private tailrec fun generateId(project: Project): String {
+        val id = "${project.hashCode()}-${UUID.randomUUID().toString().split("-")[0]}"
+        return if (projects.containsKey(id)) generateId(project) else id
     }
 
     init {

@@ -7,10 +7,10 @@ import xyz.wingio.dahlia.domain.models.Request
 
 class ProjectViewModel(
     projectManager: ProjectManager,
-    name: String
+    id: String
 ) : ScreenModel {
 
-    val project = projectManager.projects[name]!!
+    val project = projectManager.projects[id]!!
     val currentRequest = mutableStateOf(null as Request?)
 
 }

@@ -10,7 +10,6 @@ import com.github.diamondminer88.zip.ZipReader
 import com.github.diamondminer88.zip.ZipWriter
 import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
-import kotlinx.serialization.Contextual
 import kotlinx.serialization.encodeToString
 import xyz.wingio.dahlia.utils.Utils
 import xyz.wingio.dahlia.utils.projectDir
@@ -24,7 +23,7 @@ import xyz.wingio.dahlia.domain.dto.Variable as DtoVariable
 
 @Stable
 class Project(
-    @Contextual private val file: File,
+    val file: File,
     config: ProjectConfig,
     requests: List<Request> = listOf(),
     folders: List<Folder> = listOf(),
@@ -64,10 +63,10 @@ class Project(
             )
         }
 
-        fun new(name: String): Project {
+        fun new(name: String, fileName: String): Project {
             val config = ProjectConfig(DtoProjectConfig())
             config.name = name
-            val proj = Project(File(projectDir, "$name.dlp"), config)
+            val proj = Project(File(projectDir, "$fileName.dlp"), config)
             proj.save()
             return proj
         }

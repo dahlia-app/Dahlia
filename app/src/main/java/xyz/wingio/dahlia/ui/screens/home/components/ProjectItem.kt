@@ -1,6 +1,7 @@
 package xyz.wingio.dahlia.ui.screens.home.components
 
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -8,7 +9,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.InsertDriveFile
 import androidx.compose.material3.ElevatedCard
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
@@ -19,22 +19,21 @@ import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import xyz.wingio.dahlia.R
 import xyz.wingio.dahlia.domain.models.Project
-import xyz.wingio.dahlia.utils.formatDate
 import xyz.wingio.dahlia.utils.relativeTime
-import java.text.SimpleDateFormat
-import java.util.Locale
+import xyz.wingio.dahlia.utils.showToast
 
 @Composable
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalFoundationApi::class)
 fun ProjectItem(
     project: Project,
     onClick: () -> Unit
 ) {
     ElevatedCard(
-        onClick = onClick
+        modifier = Modifier.combinedClickable(onLongClick = {
+            showToast(project.file.name)
+        }, onClick = onClick)
     ) {
         Column(
             verticalArrangement = Arrangement.spacedBy(5.dp),

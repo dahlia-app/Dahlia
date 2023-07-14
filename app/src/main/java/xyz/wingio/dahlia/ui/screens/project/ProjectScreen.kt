@@ -11,13 +11,13 @@ import org.koin.core.parameter.parametersOf
 import xyz.wingio.dahlia.ui.screens.project.components.ProjectTitleBar
 import xyz.wingio.dahlia.ui.viewmodels.project.ProjectViewModel
 
-class ProjectScreen(private val projectName: String) : Screen {
+class ProjectScreen(private val projectId: String) : Screen {
 
     @Composable
     @OptIn(ExperimentalMaterial3Api::class)
     @SuppressLint("MutableCollectionMutableState")
     override fun Content() {
-        val viewModel: ProjectViewModel = getScreenModel { parametersOf(projectName) }
+        val viewModel: ProjectViewModel = getScreenModel { parametersOf(projectId) }
         val drawerState = rememberDrawerState(DrawerValue.Closed)
         val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
         val project = viewModel.project

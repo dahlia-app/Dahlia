@@ -42,7 +42,8 @@ class HomeScreen : Screen {
         val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
         val nav = LocalNavigator.currentOrThrow
         val viewModel: HomeViewModel = getScreenModel()
-        val projects = viewModel.projects.values.toList().sortedByDescending { it.lastModified }
+        val projects =
+            viewModel.projects.toList().sortedByDescending { (_, project) -> project.lastModified }
 
         Scaffold(
             topBar = { TitleBar(scrollBehavior = scrollBehavior) },
@@ -60,10 +61,10 @@ class HomeScreen : Screen {
                     .fillMaxSize()
             ) {
                 items(projects.size) {
-                    val project = projects[it]
+                    val (id, project) = projects[it]
                     ProjectItem(
                         project = project,
-                        onClick = { nav.push(ProjectScreen(project.config.name)) }
+                        onClick = { nav.push(ProjectScreen(id)) }
                     )
                 }
             }

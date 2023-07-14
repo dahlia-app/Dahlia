@@ -64,10 +64,8 @@ class CreateScreen : Screen {
                 )
                 FilledTonalButton(
                     onClick = {
-                        with(viewModel.createProject()) {
-                            nav.replace(
-                                ProjectScreen(config.name)
-                            )
+                        viewModel.createProject().let { (id, _) ->
+                            nav.replace(ProjectScreen(id))
                         }
                     },
                     modifier = Modifier.fillMaxWidth(),
