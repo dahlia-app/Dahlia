@@ -9,7 +9,7 @@ import xyz.wingio.dahlia.domain.dto.Folder as DtoFolder
 class Folder(
     id: Int = 1,
     name: String = ""
-): java.io.Serializable {
+) {
 
     constructor(folder: DtoFolder): this(folder.id, folder.name)
 

@@ -19,25 +19,23 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import cafe.adriel.voyager.androidx.AndroidScreen
+import cafe.adriel.voyager.core.screen.Screen
+import cafe.adriel.voyager.koin.getScreenModel
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.Navigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import org.koin.androidx.compose.get
-import org.koin.androidx.compose.getViewModel
 import xyz.wingio.dahlia.R
 import xyz.wingio.dahlia.domain.manager.ProjectManager
 import xyz.wingio.dahlia.ui.screens.project.ProjectScreen
 import xyz.wingio.dahlia.ui.viewmodels.create.CreateViewModel
 
-class CreateScreen : AndroidScreen() {
+class CreateScreen : Screen {
 
     @Composable
     override fun Content() {
-
-        val viewModel: CreateViewModel = getViewModel()
+        val viewModel: CreateViewModel = getScreenModel()
         val projectManager: ProjectManager = get()
-
         val nav = LocalNavigator.currentOrThrow
 
         Scaffold(
@@ -68,9 +66,7 @@ class CreateScreen : AndroidScreen() {
                     onClick = {
                         with(viewModel.createProject()) {
                             nav.replace(
-                                ProjectScreen(
-                                    this
-                                )
+                                ProjectScreen(config.name)
                             )
                         }
                     },

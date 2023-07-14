@@ -13,7 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import cafe.adriel.voyager.androidx.AndroidScreen
+import cafe.adriel.voyager.core.screen.Screen
 import org.koin.androidx.compose.get
 import xyz.wingio.dahlia.R
 import xyz.wingio.dahlia.domain.manager.PreferenceManager
@@ -21,7 +21,7 @@ import xyz.wingio.dahlia.ui.components.BackButton
 import xyz.wingio.dahlia.ui.components.settings.SettingsItemChoice
 import xyz.wingio.dahlia.ui.components.settings.SettingsSwitch
 
-class AppearanceSettingsScreen: AndroidScreen() {
+class AppearanceSettingsScreen: Screen {
 
     @Composable
     @OptIn(ExperimentalMaterial3Api::class)

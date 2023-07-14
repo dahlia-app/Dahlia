@@ -5,24 +5,22 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
-import cafe.adriel.voyager.androidx.AndroidScreen
-import org.koin.androidx.compose.getViewModel
-import xyz.wingio.dahlia.domain.models.Project
-import xyz.wingio.dahlia.domain.models.Request
-import xyz.wingio.dahlia.domain.models.Variable
+import cafe.adriel.voyager.core.screen.Screen
+import cafe.adriel.voyager.koin.getScreenModel
+import org.koin.core.parameter.parametersOf
 import xyz.wingio.dahlia.ui.screens.project.components.ProjectTitleBar
 import xyz.wingio.dahlia.ui.viewmodels.project.ProjectViewModel
 
-class ProjectScreen(private val project: Project) : AndroidScreen() {
+class ProjectScreen(private val projectName: String) : Screen {
 
     @Composable
     @OptIn(ExperimentalMaterial3Api::class)
     @SuppressLint("MutableCollectionMutableState")
     override fun Content() {
-        val viewModel: ProjectViewModel = getViewModel()
+        val viewModel: ProjectViewModel = getScreenModel { parametersOf(projectName) }
         val drawerState = rememberDrawerState(DrawerValue.Closed)
         val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
+        val project = viewModel.project
 
         Scaffold(
             topBar = {

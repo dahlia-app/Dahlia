@@ -7,7 +7,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import xyz.wingio.dahlia.domain.dto.Method
 import xyz.wingio.dahlia.domain.dto.Request as DtoRequest
-import xyz.wingio.dahlia.domain.dto.Variable as DtoVariable
 
 class Request(
     method: Method = Method.GET,
@@ -20,7 +19,7 @@ class Request(
     headers: Map<String, String> = mapOf(),
     variables: Map<String, Variable> = mapOf(),
     body: String = ""
-) : java.io.Serializable {
+) {
 
     constructor(
         req: DtoRequest

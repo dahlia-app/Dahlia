@@ -7,7 +7,7 @@ import xyz.wingio.dahlia.domain.dto.ProjectConfig as DtoProjectConfig
 
 class ProjectConfig(
     config: DtoProjectConfig
-) : java.io.Serializable {
+) {
 
     var name by mutableStateOf(config.name)
     var saveResponses by mutableStateOf(config.saveResponses)

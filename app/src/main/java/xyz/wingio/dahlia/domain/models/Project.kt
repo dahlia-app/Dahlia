@@ -1,8 +1,5 @@
 package xyz.wingio.dahlia.domain.models
 
-import android.annotation.SuppressLint
-import android.os.Parcel
-import android.os.Parcelable
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateMapOf
@@ -15,16 +12,15 @@ import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
 import kotlinx.serialization.Contextual
 import kotlinx.serialization.encodeToString
-import xyz.wingio.dahlia.domain.dto.Variable as DtoVariable
-import xyz.wingio.dahlia.domain.dto.Folder as DtoFolder
-import xyz.wingio.dahlia.domain.dto.ProjectConfig as DtoProjectConfig
-import xyz.wingio.dahlia.domain.dto.Request as DtoRequest
 import xyz.wingio.dahlia.utils.Utils
 import xyz.wingio.dahlia.utils.projectDir
 import xyz.wingio.dahlia.utils.readObject
 import java.io.File
-import java.io.Serializable
-import java.util.*
+import java.util.UUID
+import xyz.wingio.dahlia.domain.dto.Folder as DtoFolder
+import xyz.wingio.dahlia.domain.dto.ProjectConfig as DtoProjectConfig
+import xyz.wingio.dahlia.domain.dto.Request as DtoRequest
+import xyz.wingio.dahlia.domain.dto.Variable as DtoVariable
 
 @Stable
 class Project(
@@ -34,7 +30,7 @@ class Project(
     folders: List<Folder> = listOf(),
     variables: Map<String, Variable> = emptyMap(),
     lastModified: Instant = Clock.System.now()
-) : Serializable {
+) {
 
     var config by mutableStateOf(config)
     val requests = requests.toMutableStateList()

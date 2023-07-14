@@ -33,7 +33,6 @@ kotlinx-datetime = { group = "org.jetbrains.kotlinx", name = "kotlinx-datetime",
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
 ktor-client-cio = { group = "io.ktor", name = "ktor-client-cio", version.ref = "ktor" }
 ktor-client-core = { group = "io.ktor", name = "ktor-client-core", version.ref = "ktor" }
-voyager-androidx = { group = "cafe.adriel.voyager", name = "voyager-androidx", version.ref = "voyager" }
 voyager-koin = { group = "cafe.adriel.voyager", name = "voyager-koin", version.ref = "voyager" }
 voyager-navigator = { group = "cafe.adriel.voyager", name = "voyager-navigator", version.ref = "voyager" }
 voyager-tab-navigator = { group = "cafe.adriel.voyager", name = "voyager-tab-navigator", version.ref = "voyager" }
@@ -53,4 +52,4 @@ compose = ["compose-material", "compose-ui", "compose-material3", "compose-mater
 koin = ["koin-core", "koin-androidx-compose", "koin-android"]
 kotlinx = ["kotlinx-serialization-json", "kotlinx-datetime"]
 ktor = ["ktor-client-cio", "ktor-client-core"]
-voyager = ["voyager-navigator", "voyager-koin", "voyager-tab-navigator", "voyager-androidx"]
+voyager = ["voyager-navigator", "voyager-koin", "voyager-tab-navigator"]

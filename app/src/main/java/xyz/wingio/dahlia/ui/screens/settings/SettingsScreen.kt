@@ -13,13 +13,13 @@ import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import cafe.adriel.voyager.androidx.AndroidScreen
+import cafe.adriel.voyager.core.screen.Screen
 import xyz.wingio.dahlia.R
 import xyz.wingio.dahlia.ui.components.BackButton
 import xyz.wingio.dahlia.ui.components.settings.SettingsCategory
 import xyz.wingio.dahlia.ui.screens.settings.appearance.AppearanceSettingsScreen
 
-class SettingsScreen : AndroidScreen() {
+class SettingsScreen : Screen {
 
     @Composable
     @OptIn(ExperimentalMaterial3Api::class)
