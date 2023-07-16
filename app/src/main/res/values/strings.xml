@@ -22,6 +22,8 @@
     <string name="settings_appearance_dynamic_colors">Dynamic Colors</string>
     <string name="settings_appearance_dynamic_colors_desc">Requires Android 12+</string>
 
+    <string name="label_or">or</string>
+
     <plurals name="plural_request">
         <item quantity="zero">%1$d Requests</item>
         <item quantity="one">%1$d Request</item>

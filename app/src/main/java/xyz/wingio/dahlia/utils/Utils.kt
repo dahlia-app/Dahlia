@@ -4,6 +4,11 @@ import android.content.Context
 import android.os.Environment
 import android.text.format.DateUtils
 import android.widget.Toast
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
+import androidx.compose.foundation.layout.systemBars
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.unit.Dp
 import com.github.diamondminer88.zip.ZipEntry
 import com.github.diamondminer88.zip.ZipReader
 import kotlinx.datetime.Clock
@@ -30,6 +35,9 @@ object Utils : KoinComponent {
     }
 
     val threadPool = Executors.newCachedThreadPool() as ExecutorService
+
+    val navBarPadding: Dp
+        @Composable get() = WindowInsets.systemBars.asPaddingValues().calculateBottomPadding()
 
 }
 
@@ -64,3 +72,5 @@ fun relativeTime(date: Instant): String {
 fun formatDate(date: Instant, format: String): String =
     SimpleDateFormat(format, Locale.getDefault())
         .format(Date(date.toEpochMilliseconds()))
+
+val WindowInsets.Companion.none get() = WindowInsets(0, 0, 0, 0)

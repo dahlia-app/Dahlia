@@ -1,11 +1,14 @@
 package xyz.wingio.dahlia.ui.screens.create
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Icon
@@ -16,6 +19,7 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -29,6 +33,7 @@ import xyz.wingio.dahlia.R
 import xyz.wingio.dahlia.domain.manager.ProjectManager
 import xyz.wingio.dahlia.ui.screens.project.ProjectScreen
 import xyz.wingio.dahlia.ui.viewmodels.create.CreateViewModel
+import xyz.wingio.dahlia.utils.projectDir
 
 class CreateScreen : Screen {
 
@@ -42,10 +47,10 @@ class CreateScreen : Screen {
             topBar = { TitleBar(nav) }
         ) {
             Column(
+                verticalArrangement = Arrangement.spacedBy(10.dp),
                 modifier = Modifier
                     .padding(it)
-                    .padding(20.dp),
-                verticalArrangement = Arrangement.spacedBy(10.dp)
+                    .padding(16.dp)
             ) {
                 OutlinedTextField(
                     value = viewModel.name,
@@ -54,14 +59,16 @@ class CreateScreen : Screen {
                     placeholder = { Text(stringResource(R.string.new_project)) },
                     modifier = Modifier.fillMaxWidth()
                 )
+
                 Text(
                     text = stringResource(
                         R.string.saved_to,
-                        "/Dahlia/Projects/${projectManager.checkName(viewModel.name)}.dlp"
+                        "${projectDir}/${projectManager.checkName(viewModel.name)}.dlp"
                     ),
                     style = MaterialTheme.typography.labelMedium,
                     color = MaterialTheme.colorScheme.secondary
                 )
+
                 FilledTonalButton(
                     onClick = {
                         viewModel.createProject().let { (id, _) ->
@@ -72,6 +79,30 @@ class CreateScreen : Screen {
                     enabled = viewModel.name.isNotBlank()
                 ) {
                     Text(stringResource(R.string.create))
+                }
+
+                Box(
+                    contentAlignment = Alignment.Center
+                ) {
+                    Divider(
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                    Text(
+                        text = stringResource(R.string.label_or),
+                        style = MaterialTheme.typography.labelLarge,
+                        modifier = Modifier
+                            .background(MaterialTheme.colorScheme.background)
+                            .padding(8.dp)
+                    )
+                }
+
+                FilledTonalButton(
+                    onClick = { /*TODO*/ },
+                    enabled = false,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                ) {
+                    Text("Import from file")
                 }
             }
         }
