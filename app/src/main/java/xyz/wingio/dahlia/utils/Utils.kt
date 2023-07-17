@@ -55,10 +55,12 @@ inline fun <reified R> ZipReader.readObject(name: String): R {
 
 inline fun <reified R> ZipEntry.readObject(): R = Utils.json.decodeFromString(String(read()))
 
+fun ZipReader.readString(name: String) = openEntry(name)?.read()?.let { String(it) }
+
 fun relativeTime(date: Instant): String {
     val now = Clock.System.now()
     val relativeTime = now - date
-    return if(relativeTime.inWholeDays / 30 >= 2)
+    return if (relativeTime.inWholeDays / 30 >= 2)
         formatDate(date, "MMM dd yyyy h:mma")
     else
         DateUtils.getRelativeTimeSpanString(

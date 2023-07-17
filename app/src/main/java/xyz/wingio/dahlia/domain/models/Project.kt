@@ -11,15 +11,19 @@ import com.github.diamondminer88.zip.ZipWriter
 import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
 import kotlinx.serialization.encodeToString
+import xyz.wingio.dahlia.utils.SemVer
 import xyz.wingio.dahlia.utils.Utils
 import xyz.wingio.dahlia.utils.projectDir
 import xyz.wingio.dahlia.utils.readObject
+import xyz.wingio.dahlia.utils.readString
 import java.io.File
 import java.util.UUID
 import xyz.wingio.dahlia.domain.dto.Folder as DtoFolder
 import xyz.wingio.dahlia.domain.dto.ProjectConfig as DtoProjectConfig
 import xyz.wingio.dahlia.domain.dto.Request as DtoRequest
 import xyz.wingio.dahlia.domain.dto.Variable as DtoVariable
+
+val VALID_VERSIONS = listOf(SemVer(1, 0, 0))
 
 @Stable
 class Project(
@@ -28,7 +32,8 @@ class Project(
     requests: List<Request> = listOf(),
     folders: List<Folder> = listOf(),
     variables: Map<String, Variable> = emptyMap(),
-    lastModified: Instant = Clock.System.now()
+    lastModified: Instant = Clock.System.now(),
+    val version: SemVer = SemVer(1, 0, 0)
 ) {
 
     var config by mutableStateOf(config)
@@ -41,8 +46,14 @@ class Project(
 
         fun fromFile(file: File): Project {
             val zip = ZipReader(file)
+
             val config = zip.readObject<DtoProjectConfig>(".config")
             val variables = zip.readObject<Map<String, DtoVariable>>(".vars")
+            val version = zip.readString("v") ?: "1.0.0"
+
+            if (!VALID_VERSIONS.contains(SemVer.fromString(version) ?: SemVer(1, 0, 0)))
+                throw IllegalStateException("Dahlia project version $version not supported")
+
             val requests = mutableListOf<Request>()
             val folders = mutableListOf<Folder>()
             for (entry in zip) {
@@ -59,7 +70,8 @@ class Project(
                 requests = requests,
                 folders = folders,
                 variables = variables.mapValues { Variable(it.value) },
-                lastModified = Instant.fromEpochMilliseconds(file.lastModified())
+                lastModified = Instant.fromEpochMilliseconds(file.lastModified()),
+                version = SemVer.fromString(version) ?: SemVer(1, 0, 0)
             )
         }
 
@@ -96,6 +108,7 @@ class Project(
                 variables.mapValues { DtoVariable.fromModel(it.value) }
             )
         )
+        zip.writeEntry("v", version.toString())
         zip.close()
         lastModified = Clock.System.now()
         return this
