@@ -26,9 +26,11 @@ import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.koin.getScreenModel
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
+import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import xyz.wingio.dahlia.R
 import xyz.wingio.dahlia.ui.components.FAB
 import xyz.wingio.dahlia.ui.screens.create.CreateScreen
+import xyz.wingio.dahlia.ui.screens.home.components.FilePermissionsDialog
 import xyz.wingio.dahlia.ui.screens.home.components.NewProjectBottomSheet
 import xyz.wingio.dahlia.ui.screens.home.components.ProjectItem
 import xyz.wingio.dahlia.ui.screens.project.ProjectScreen
@@ -41,8 +43,9 @@ import xyz.wingio.dahlia.utils.padding
 class HomeScreen : Screen {
 
     @Composable
-    @OptIn(ExperimentalMaterial3Api::class)
+    @OptIn(ExperimentalMaterial3Api::class, ExperimentalPermissionsApi::class)
     override fun Content() {
+
         val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
         val nav = LocalNavigator.currentOrThrow
         val viewModel: HomeViewModel = getScreenModel()
@@ -61,6 +64,10 @@ class HomeScreen : Screen {
                 }
             )
         }
+
+        FilePermissionsDialog(
+            onGranted = { viewModel.projectManager.loadProjects() }
+        )
 
         Scaffold(
             topBar = { TitleBar(scrollBehavior = scrollBehavior) },

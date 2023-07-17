@@ -13,6 +13,7 @@ voyager = "1.0.0-rc06"
 zip-android = "2.1.0"
 
 [libraries]
+accompanist-permissions = { group = "com.google.accompanist", name = "accompanist-permissions", version.ref = "accompanist" }
 accompanist-systemuicontroller = { group = "com.google.accompanist", name = "accompanist-systemuicontroller", version.ref = "accompanist" }
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version = "1.7.2" }
 androidx-activity-ktx = { group = "androidx.activity", name = "activity-ktx", version = "1.7.2" }
@@ -45,7 +46,7 @@ kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 
 [bundles]
-accompanist = ["accompanist-systemuicontroller"]
+accompanist = ["accompanist-systemuicontroller", "accompanist-permissions"]
 androidx = ["androidx-core-splashscreen", "androidx-lifecycle-runtime", "androidx-core", "androidx-activity-ktx"]
 coil = ["coil", "coil-compose"]
 compose = ["compose-material", "compose-ui", "compose-material3", "compose-material-icons", "androidx-activity-compose"]

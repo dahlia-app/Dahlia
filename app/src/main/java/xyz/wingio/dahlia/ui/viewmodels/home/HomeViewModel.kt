@@ -6,7 +6,7 @@ import androidx.compose.runtime.setValue
 import cafe.adriel.voyager.core.model.ScreenModel
 import xyz.wingio.dahlia.domain.manager.ProjectManager
 
-class HomeViewModel(projectManager: ProjectManager) : ScreenModel {
+class HomeViewModel(val projectManager: ProjectManager) : ScreenModel {
 
     val projects = projectManager.projects
 

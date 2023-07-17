@@ -14,7 +14,8 @@ class ProjectManager {
     private val names: List<String> get() = projects.map { it.value.config.name.lowercase() }
     private val countedNameRX = " \\((\\d+)\\)\$".toRegex()
 
-    private fun loadProjects() {
+    fun loadProjects() {
+        projects.clear()
         if (projectDir.isFile) projectDir.delete()
         if (!projectDir.exists()) projectDir.mkdirs()
         projectDir.listFiles()?.forEach { file ->

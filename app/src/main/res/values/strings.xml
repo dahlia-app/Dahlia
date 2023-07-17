@@ -9,7 +9,12 @@
     <string name="saved_to">This will be saved to %1$s</string>
     <string name="create">Create</string>
     <string name="no_request_selected">No request currently selected, open the navigation drawer by tapping the icon in the top left corner to select or create a request.</string>
+
     <string name="action_confirm">Confirm</string>
+    <string name="action_open_settings">Open settings</string>
+
+    <string name="permissions_grant_title">Grant Permissions</string>
+    <string name="permissions_grant_body">Dahlia requires access to ~/Dahlia in order to store projects, as such file permissions are required</string>
 
     <string name="theme_system">System</string>
     <string name="theme_light">Light</string>
