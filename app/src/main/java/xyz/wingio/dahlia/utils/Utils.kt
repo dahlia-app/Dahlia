@@ -31,7 +31,7 @@ object Utils : KoinComponent {
         isLenient = true
         ignoreUnknownKeys = true
         prettyPrint = true
-//        encodeDefaults = true
+        encodeDefaults = true
     }
 
     val threadPool = Executors.newCachedThreadPool() as ExecutorService

@@ -11,6 +11,7 @@ import com.github.diamondminer88.zip.ZipWriter
 import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
 import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 import xyz.wingio.dahlia.utils.SemVer
 import xyz.wingio.dahlia.utils.Utils
 import xyz.wingio.dahlia.utils.projectDir
@@ -76,8 +77,7 @@ class Project(
         }
 
         fun new(name: String, fileName: String): Project {
-            val config = ProjectConfig(DtoProjectConfig())
-            config.name = name
+            val config = ProjectConfig(DtoProjectConfig(name = name))
             val proj = Project(File(projectDir, "$fileName.dlp"), config)
             proj.save()
             return proj
@@ -112,6 +112,11 @@ class Project(
         zip.close()
         lastModified = Clock.System.now()
         return this
+    }
+
+    enum class Type {
+        NORMAL,
+        REQUEST
     }
 
 }

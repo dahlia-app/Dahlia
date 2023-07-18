@@ -6,10 +6,25 @@ import androidx.compose.runtime.setValue
 import xyz.wingio.dahlia.domain.dto.ProjectConfig as DtoProjectConfig
 
 class ProjectConfig(
-    config: DtoProjectConfig
+    name: String,
+    description: String? = null,
+    version: String? = null,
+    saveResponses: Boolean,
+    type: Project.Type = Project.Type.NORMAL
 ) {
 
-    var name by mutableStateOf(config.name)
-    var saveResponses by mutableStateOf(config.saveResponses)
+    constructor(config: DtoProjectConfig): this(
+        name = config.name,
+        description = config.description,
+        version = config.version,
+        saveResponses = config.saveResponses,
+        type = Project.Type.values()[config.type]
+    )
+
+    var name by mutableStateOf(name)
+    var description by mutableStateOf(description)
+    var version by mutableStateOf(version)
+    var saveResponses by mutableStateOf(saveResponses)
+    var type by mutableStateOf(type)
 
 }

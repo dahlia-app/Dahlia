@@ -15,21 +15,20 @@ import xyz.wingio.dahlia.ui.theme.PutOrange
 @Serializable
 data class Request(
     var method: Method = Method.GET,
-    var name: String = "",
-    var description: String = "",
+    var name: String,
+    var description: String? = null,
     var folder: Int = 1,
     var url: String = "",
     var queries: Map<String, String> = mapOf(),
-    var params: Map<String, String> = mapOf(),
     var headers: Map<String, String> = mapOf(),
     var variables: Map<String, Variable> = mapOf(),
-    var body: String = ""
+    var body: String? = null
 ) {
 
     companion object {
 
         fun fromModel(model: ModelRequest) = with(model) {
-            Request(method, name, description, folder, url, queries, params, headers, variables.mapValues { Variable.fromModel(it.value) }, body)
+            Request(method, name, description, folder, url, queries, headers, variables.mapValues { Variable.fromModel(it.value) }, body)
         }
 
     }

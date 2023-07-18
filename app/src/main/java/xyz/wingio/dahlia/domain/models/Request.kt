@@ -10,30 +10,28 @@ import xyz.wingio.dahlia.domain.dto.Request as DtoRequest
 
 class Request(
     method: Method = Method.GET,
-    name: String = "",
-    description: String = "",
+    name: String,
+    description: String? = null,
     folder: Int = 1,
     url: String = "",
     queries: Map<String, String> = mapOf(),
-    params: Map<String, String> = mapOf(),
     headers: Map<String, String> = mapOf(),
     variables: Map<String, Variable> = mapOf(),
-    body: String = ""
+    body: String? = null
 ) {
 
     constructor(
         req: DtoRequest
     ) : this(
-        req.method,
-        req.name,
-        req.description,
-        req.folder,
-        req.url,
-        req.queries,
-        req.params,
-        req.headers,
-        req.variables.mapValues { Variable(it.value) },
-        req.body
+        method = req.method,
+        name = req.name,
+        description = req.description,
+        folder = req.folder,
+        url = req.url,
+        queries = req.queries,
+        headers = req.headers,
+        variables = req.variables.mapValues { Variable(it.value) },
+        body = req.body
     )
 
     var method: Method by mutableStateOf(method)
@@ -47,8 +45,6 @@ class Request(
     var url by mutableStateOf(url)
 
     var queries = mutableStateMapOf<String, String>().apply { putAll(queries) }
-
-    var params = mutableStateMapOf<String, String>().apply { putAll(params) }
 
     var headers = mutableStateMapOf<String, String>().apply { putAll(headers) }
 

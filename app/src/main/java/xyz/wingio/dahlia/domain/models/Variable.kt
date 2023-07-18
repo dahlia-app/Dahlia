@@ -10,7 +10,10 @@ class Variable(
     sensitive: Boolean = false
 ) {
 
-    constructor(variable: Variable): this(variable.value, variable.sensitive)
+    constructor(variable: Variable): this(
+        value = variable.value,
+        sensitive = variable.sensitive
+    )
 
     var value by mutableStateOf(value)
     var sensitive by mutableStateOf(sensitive)

@@ -5,7 +5,7 @@ import xyz.wingio.dahlia.domain.models.Variable
 
 @Serializable
 data class Variable(
-    val value: String = "",
+    val value: String,
     val sensitive: Boolean = false
 ) {
 

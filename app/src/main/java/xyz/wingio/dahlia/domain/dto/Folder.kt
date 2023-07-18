@@ -5,9 +5,9 @@ import xyz.wingio.dahlia.domain.models.Folder as ModelFolder
 
 @Serializable
 data class Folder(
-    val id: Int = 1,
-    val name: String = ""
-): java.io.Serializable {
+    val id: Int,
+    val name: String
+) {
 
     companion object {
 
