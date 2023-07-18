@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://github.com/dahlia-app/Dahlia/assets/44992537/d6266170-5ae1-4e69-83d3-55ab76c14fed" alt="Dahlia logo" height="200px"/>
+  <img src="https://github.com/dahlia-app/Dahlia/assets/44992537/ae881ef8-a726-4e40-b927-da684ea3ad76" alt="Dahlia logo" height="200px"/>
 
   # Dahlia
   Material You REST client for Android
