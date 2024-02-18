@@ -11,12 +11,13 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:name=".app.App"
+        android:name=".Dahlia"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Dahlia"
         android:requestLegacyExternalStorage="true"
         tools:ignore="AllowBackup">
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"
@@ -26,8 +27,9 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths" />
         </provider>
+
         <activity
-            android:name=".ui.MainActivity"
+            android:name=".ui.activity.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.Dahlia">
             <intent-filter>
@@ -35,6 +37,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>

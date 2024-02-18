@@ -6,10 +6,10 @@ plugins {
 
 android {
     compileSdk = 34
-    namespace = "xyz.wingio.dahlia"
+    namespace = "rest.dahlia"
 
     defaultConfig {
-        applicationId = "xyz.wingio.dahlia"
+        applicationId = "rest.dahlia"
         minSdk = 21
         targetSdk = 34
         versionCode = 1000
